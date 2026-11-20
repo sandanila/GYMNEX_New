@@ -1,0 +1,19 @@
+import React from 'react'
+
+function EmailInput() {
+  return (
+    <>
+      <div className="py-2 pb-4">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your Email"
+          className="p-2.5 w-full border rounded-xl bg-gray-900"
+        />
+      </div>
+    </>
+  )
+}
+
+export default EmailInput
