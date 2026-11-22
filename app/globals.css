@@ -1,1 +1,26 @@
 @import "tailwindcss";
+@import "react-phone-number-input/style.css";
+
+.PhoneInputCountrySelect {
+    @apply bg-black text-white
+}
+
+.PhoneInput {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.PhoneInputCountry {
+    display: flex;
+    align-items:center;
+    gap: 5px;
+}
+
+.PhoneInputInput {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    color: white;
+    outline: none;
+}

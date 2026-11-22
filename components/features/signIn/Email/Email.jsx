@@ -6,7 +6,6 @@ function Email() {
       <div>
         <label
           htmlFor="email"
-          id="email"
           className=""
         >
           Email Address

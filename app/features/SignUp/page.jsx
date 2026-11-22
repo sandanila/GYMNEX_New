@@ -1,13 +1,12 @@
-import React from 'react'
+import React from "react";
+import ProfileDetails from "@/components/features/signUp/SignUpLayout/SignUpLayout";
 
 function page() {
   return (
     <div>
-      <div>
-        <h1>Sign Up Page</h1>
-      </div>
+      <ProfileDetails />
     </div>
-  )
+  );
 }
 
-export default page
+export default page;
