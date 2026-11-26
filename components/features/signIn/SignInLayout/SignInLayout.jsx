@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Logo from "../Logo";
 import Welcome from "../Welcome";
@@ -19,15 +20,19 @@ function SignInLayout() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const router = useRouter();
+
   const validateEmail = () => {
-    if (!email.trim()) {
+    const emailValue = email.trim();
+    
+    if (!emailValue) {
       setErrorMessage("Email address is required");
       return false;
     }
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!emailPattern.test(email)) {
+    if (!emailPattern.test(emailValue)) {
       setErrorMessage("Please enter a valid email address");
       return false;
     }
@@ -37,35 +42,71 @@ function SignInLayout() {
   };
 
   const validatePassword = () => {
-    if (!password.trim()) {
+    if (!password) {
       setErrorMessage("Password is required");
-      return false;
-    }
-
-    if (password.length < 8) {
-      setErrorMessage("Password must be at least 8 characters");
       return false;
     }
 
     return true;
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log("Sign in button clicked")
 
     setErrorMessage("");
 
     const isEmailValid = validateEmail();
 
-    if (!isEmailValid) {
-      return;
-    }
+    if (!isEmailValid) return;
+
+    console.log("Email validation successful")
 
     const isPasswordValid = validatePassword();
 
     if (!isPasswordValid) return;
 
-    console.log("Email validation successful");
+    // 1. start loading
+    setIsLoading(true);
+
+    try {
+      // 2. send login data to backend
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          password: password,
+        }),
+      });
+
+      // 3. get backend response
+      const data = await res.json();
+
+      // 4. check login result
+      if (!res.ok) {
+        setErrorMessage(data.message);
+        return;
+      }
+
+      console.log("Login successful");
+      console.log("User role:", data.user.role);
+
+      if (data.user.role === "admin") {
+        router.push("/admin/dashboard");
+      } else if (data.user.role === "member") {
+        router.push("/member/dashboard");
+      }
+
+    } catch (error) {
+      console.error("Login error:", error);
+      setErrorMessage("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

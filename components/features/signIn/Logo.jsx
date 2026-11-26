@@ -11,7 +11,7 @@ function Logo() {
             width={150}
             height={150}
             priority
-            className="m-2 hover:scale-110 hover:-translate-y-1 transition-transform duration-300"
+            className="m-2 w-auto h-auto hover:scale-110 hover:-translate-y-1 transition-transform duration-300"
         />
       </div>
     </>
