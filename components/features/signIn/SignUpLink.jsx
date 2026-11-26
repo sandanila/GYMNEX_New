@@ -6,7 +6,7 @@ function SignUpLink() {
     <>
       <div className="flex items-center justify-center">
         <p>Don't have an account?{" "}
-            <Link href="/features/SignUp" className="hover:underline">
+            <Link href="/SignUp" className="hover:underline">
                 Sign up
             </Link>
         </p>

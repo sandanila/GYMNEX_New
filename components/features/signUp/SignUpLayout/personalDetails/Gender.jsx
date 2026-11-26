@@ -8,7 +8,6 @@ function Gender({ value, onChange }) {
           name="gender"
           value={value}
           onChange={onChange}
-          defaultValue=""
           className="text-white bg-black border  rounded-xl w-full px-3 py-3 text-sm shadow-xs focus:ring-2 focus:border-blue-500"
         >
           <option value="" disabled>

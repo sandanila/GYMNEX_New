@@ -1,12 +1,14 @@
 import React from "react";
 
-function TermsAndConsitions() {
+function TermsAndConsitions({ checked, onChange }) {
   return (
     <div className="flex items-start gap-2 my-4">
       <input
         type="checkbox"
         id="terms"
         name="terms"
+        checked={checked}
+        onChange={onChange}
         required
         className="mt-1 accent-purple-600"
       />

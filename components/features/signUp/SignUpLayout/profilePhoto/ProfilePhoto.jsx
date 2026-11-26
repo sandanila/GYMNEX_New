@@ -1,16 +1,23 @@
 "use client";
 
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import ProfilePhotoUpload from './ProfilePhotoUpload'
 import ProfilePhotoPreview from './ProfilePhotoPreview'
 
-function ProfilePhoto() {
-
-    const [photo, setPhoto] = useState(null);
+function ProfilePhoto({ photo, setPhoto }) {
 
     const handleRemove = () => {
         setPhoto(null);
     };
+
+    {/* image URL */}
+    useEffect(() => {
+      return () => {
+        if (photo?.previewUrl) {
+          URL.revokeObjectURL(photo.previewUrl);
+        }
+      };
+    }, [photo]);
   return (
     <div>
       <div className="flex flex-col items-center gap-3">

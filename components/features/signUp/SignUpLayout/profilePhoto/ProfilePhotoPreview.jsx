@@ -5,11 +5,12 @@ function ProfilePhotoPreview({ photo }) {
       <div className="w-28 h-28 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
         {photo ? (
             <Image
-                src={photo}
+                src={photo.previewUrl}
                 alt="Profile Preview"
                 width={112}
                 height={112}
                 className="w-full h-full object-cover"
+                unoptimized
             />
         ) : (
             <span className="text-gray-500 text-sm">

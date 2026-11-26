@@ -14,7 +14,7 @@ function PasswordInput({ value, onChange }) {
           value={value}
           onChange={onChange}
           placeholder="Enter your password"
-          autoComplete="current-password"
+          autoComplete="off"
           className="p-2.5 pr-16 w-full border rounded-xl bg-gray-900"
         />
 
